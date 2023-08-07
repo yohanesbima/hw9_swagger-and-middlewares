@@ -1,0 +1,573 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Documentation",
+    "version": "1.0.0",
+    "description": "Documentation for your RESTful API",
+    "contact": {
+      "name": "Yohanes Bima"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Register": {
+        "type": "object",
+        "required": ["email", "gender", "password", "role"],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The auto-generated id of the user"
+          },
+          "email": {
+            "type": "string",
+            "description": "The email of the user"
+          },
+          "gender": {
+            "type": "string",
+            "description": "The gender of the user"
+          },
+          "password": {
+            "type": "string",
+            "description": "The password of the user"
+          },
+          "role": {
+            "type": "string",
+            "description": "The role of the user"
+          }
+        }
+      },
+      "Users": {
+        "type": "object",
+        "required": ["email", "gender", "password", "role"],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The auto-generated id of the user"
+          },
+          "email": {
+            "type": "string",
+            "description": "The email of the user"
+          },
+          "gender": {
+            "type": "string",
+            "description": "The gender of the user"
+          },
+          "password": {
+            "type": "string",
+            "description": "The password of the user"
+          },
+          "role": {
+            "type": "string",
+            "description": "The role of the user"
+          }
+        }
+      },
+      "Login": {
+        "type": "object",
+        "required": ["email", "gender", "password", "role"],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The auto-generated id of the user"
+          },
+          "email": {
+            "type": "string",
+            "description": "The email of the user"
+          },
+          "gender": {
+            "type": "string",
+            "description": "The gender of the user"
+          },
+          "password": {
+            "type": "string",
+            "description": "The password of the user"
+          },
+          "role": {
+            "type": "string",
+            "description": "The role of the user"
+          }
+        }
+      },
+      "Movies": {
+        "type": "object",
+        "required": ["title", "genres", "year"],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The auto-generated id of the movie"
+          },
+          "title": {
+            "type": "string",
+            "description": "The title of the movie"
+          },
+          "genres": {
+            "type": "string",
+            "description": "The genres of the movie"
+          },
+          "year": {
+            "type": "string",
+            "description": "The year of the movie"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Register",
+      "description": "Register managing API"
+    },
+    {
+      "name": "Users",
+      "description": "Users managing API"
+    },
+    {
+      "name": "Login",
+      "description": "Login managing API"
+    },
+    {
+      "name": "Movies",
+      "description": "Movies managing API"
+    }
+  ],
+  "paths": {
+"/register": {
+    "post": {
+      "summary": "Add new user",
+      "tags": ["Register"],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Register"
+            }
+          }
+        }
+      },
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Register"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/login": {
+    "post": {
+      "summary": "Login",
+      "tags": ["Login"],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Login"
+            }
+          }
+        }
+      },
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/users": {
+    "get": {
+      "summary": "Get all users",
+      "tags": ["Users"],
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "parameters": [
+        {
+          "in": "query",
+          "name": "page",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Page"
+        },
+        {
+          "in": "query",
+          "name": "limit",
+          "schema": {
+            "type": "string"
+          },
+          "description": "Limit"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Users"
+              }
+            }
+          }
+        }
+      }
+    },
+    "post": {
+      "summary": "Add new user",
+      "tags": ["Users"],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Users"
+            }
+          }
+        }
+      },
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Users"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/users/{id}": {
+    "get": {
+      "summary": "Get user by id",
+      "tags": ["Users"],
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "schema": {
+            "type": "string"
+          },
+          "description": "ID of the user to get"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Users"
+              }
+            }
+          }
+        }
+      }
+    },
+    "post": {
+      "summary": "Edit user by id",
+      "tags": ["Users"],
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Users"
+            }
+          }
+        }
+      },
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "schema": {
+            "type": "string"
+          },
+          "description": "ID of the user to get"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Users"
+              }
+            }
+          }
+        }
+      }
+    },
+    "delete": {
+      "summary": "Delete user by id",
+      "tags": ["Users"],
+      "security": [
+        {
+          "bearerAuth": []
+        }
+      ],
+      "parameters": [
+        {
+          "in": "path",
+          "name": "id",
+          "schema": {
+            "type": "string"
+          },
+          "description": "ID of the user to delete"
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Users"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+
+
+
+
+"/movies": {
+  "get": {
+    "summary": "Get all movies",
+    "tags": ["Movies"],
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ],
+    "parameters": [
+      {
+        "in": "query",
+        "name": "page",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Page"
+      },
+      {
+        "in": "query",
+        "name": "limit",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Limit"
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Movies"
+            }
+          }
+        }
+      }
+    }
+  },
+  "post": {
+    "summary": "Add new movie",
+    "tags": ["Movies"],
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ],
+    "requestBody": {
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/Movies"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Movies"
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/movies/{id}": {
+  "get": {
+    "summary": "Get movie by id",
+    "tags": ["Movies"],
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ],
+    "parameters": [
+      {
+        "in": "path",
+        "name": "id",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "ID of the movie to get"
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Movies"
+            }
+          }
+        }
+      }
+    }
+  },
+  "put": {
+    "summary": "Edit movie by id",
+    "tags": ["Movies"],
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ],
+    "parameters": [
+      {
+        "in": "path",
+        "name": "id",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "ID of the movie to get"
+      }
+    ],
+    "requestBody": {
+      "required": true,
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/Movies"
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Movies"
+            }
+          }
+        }
+      }
+    }
+  },
+  "delete": {
+    "summary": "Delete movie by id",
+    "tags": ["Movies"],
+    "security": [
+      {
+        "bearerAuth": []
+      }
+    ],
+    "parameters": [
+      {
+        "in": "path",
+        "name": "id",
+        "schema": {
+          "type": "integer"
+        },
+        "description": "ID of the movie to delete"
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Movies"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+  }
+}
